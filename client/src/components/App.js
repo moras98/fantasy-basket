@@ -38,20 +38,19 @@ function App() {
         <Header />
           <Routes>
             {/* Public Routes */}
-            <Route exact path='/' element={<Home/>} />
-            <Route exact path='/login' element={<Login/>} />
-            <Route exact path='/register' element={<Register/>} />
-            <Route exact path='/teams' element={<Teams/>} />
+            <Route  path='/' element={<Home/>} />
+            <Route  path='/login' element={<Login/>} />
+            <Route  path='/register' element={<Register/>} />
+            <Route  path='/teams' element={<Teams/>} />
             <Route path='/teams/:teamId' element={<TeamInfo/>} />
-            <Route exact path='/players' element={<Players/>} />
+            <Route  path='/players' element={<Players/>} />
             <Route path='/players/:playerId' element={<PlayerInfo/>} />
-            <Route exact path='games/' element={<Games/>}/>
-            <Route exact path='games/:gameId' element={<GameStats/>}/>
+            <Route  path='/games/' element={<Games/>}/>
+            <Route  path='/games/:gameId' element={<GameStats/>}/>
             <Route path='/leaderboard' element ={<UsersTeams/>} />
             {/* Private Routes */}
             <Route path='/account' element={loggedInStatus ? (<Account/>) : (<Navigate to='/login' replace />)}/>
-            <Route path='/myTeam/' element ={loggedInStatus ? (<MyTeam/>): (<Navigate to='/login' replace/>)} />
-            
+            <Route path='/myTeam/' element ={loggedInStatus ? (<MyTeam/>): (<Navigate to='/login' replace/>)} />           
           </Routes>
       </Router>
     </div>
