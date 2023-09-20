@@ -41,7 +41,7 @@ const { DB } = require('./config');
         team2_score     INT,
         team1_id        INT,
         team2_id        INT,
-        matchweek_id    INT
+        matchweek_id    INT,
         FOREIGN KEY (team1_id) REFERENCES teams(id),
         FOREIGN KEY (team2_id) REFERENCES teams(id),
         FOREIGN KEY (matchweek_id) REFERENCE matchweeks(id)
@@ -79,7 +79,7 @@ const { DB } = require('./config');
         FOREIGN KEY (player2_id) REFERENCES players(id),
         FOREIGN KEY (player3_id) REFERENCES players(id),
         FOREIGN KEY (player4_id) REFERENCES players(id),
-        FOREIGN KEY (player5_id) REFERENCES players(id),
+        FOREIGN KEY (player5_id) REFERENCES players(id)
     );
     `;
 
@@ -87,8 +87,8 @@ const { DB } = require('./config');
     CREATE TABLE IF NOT EXISTS matchweeks (
         id              INT     PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
         n_matchweek     INT     UNIQUE NOT NULL,
-        start_date      TIMESTAMP WITH TIMEZONE
-        end_date      TIMESTAMP WITH TIMEZONE
+        start_date      TIMESTAMP,
+        end_date      TIMESTAMP
     );`;
 
     try {
@@ -104,12 +104,12 @@ const { DB } = require('./config');
   
         // Create tables on database
         await db.query(usersTableStmt);
+        await db.query(matchweeksTableStmt);
         await db.query(teamsTableStmt);
         await db.query(playersTableStmt);
         await db.query(gamesTableStmt);
         await db.query(games_statsTableStmt);
         await db.query(users_teamsTableStmt);
-        await db.query(matchweeksTableStmt);
     
         await db.end();
     } catch(err) {
