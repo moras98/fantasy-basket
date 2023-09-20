@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/fantasyfubb/static/css/main.c8c660be.css",
-    "main.js": "/fantasyfubb/static/js/main.100471b8.js",
-    "index.html": "/fantasyfubb/index.html",
-    "main.c8c660be.css.map": "/fantasyfubb/static/css/main.c8c660be.css.map",
-    "main.100471b8.js.map": "/fantasyfubb/static/js/main.100471b8.js.map"
+    "main.css": "/fantasy-basket/static/css/main.c8c660be.css",
+    "main.js": "/fantasy-basket/static/js/main.100471b8.js",
+    "index.html": "/fantasy-basket/index.html",
+    "main.c8c660be.css.map": "/fantasy-basket/static/css/main.c8c660be.css.map",
+    "main.100471b8.js.map": "/fantasy-basket/static/js/main.100471b8.js.map"
   },
   "entrypoints": [
     "static/css/main.c8c660be.css",
