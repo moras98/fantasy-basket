@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fantasyfubb/static/css/main.c8c660be.css",
+    "main.js": "/fantasyfubb/static/js/main.100471b8.js",
+    "index.html": "/fantasyfubb/index.html",
+    "main.c8c660be.css.map": "/fantasyfubb/static/css/main.c8c660be.css.map",
+    "main.100471b8.js.map": "/fantasyfubb/static/js/main.100471b8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8c660be.css",
+    "static/js/main.100471b8.js"
+  ]
+}
