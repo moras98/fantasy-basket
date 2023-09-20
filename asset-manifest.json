@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/fantasy-basket/static/css/main.c8c660be.css",
-    "main.js": "/fantasy-basket/static/js/main.bdc6a974.js",
+    "main.js": "/fantasy-basket/static/js/main.796ccbfa.js",
     "index.html": "/fantasy-basket/index.html",
     "main.c8c660be.css.map": "/fantasy-basket/static/css/main.c8c660be.css.map",
-    "main.bdc6a974.js.map": "/fantasy-basket/static/js/main.bdc6a974.js.map"
+    "main.796ccbfa.js.map": "/fantasy-basket/static/js/main.796ccbfa.js.map"
   },
   "entrypoints": [
     "static/css/main.c8c660be.css",
-    "static/js/main.bdc6a974.js"
+    "static/js/main.796ccbfa.js"
   ]
 }
