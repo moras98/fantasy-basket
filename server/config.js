@@ -1,9 +1,9 @@
 module.exports = {
     DB: {
-        PGHOST: 'localhost',
-        PGUSER: 'agustin',
-        PGDATABASE: 'fantasybasket',
-        PGPASSWORD: 'agustin1',
+        PGHOST: 'db.znxtejufakfsyjfbgfsh.supabase.co',
+        PGUSER: 'postgres',
+        PGDATABASE: 'postgres',
+        PGPASSWORD: 'Agustravieso98',
         PGPORT: 5432,
     },
     PORT: 3001,
