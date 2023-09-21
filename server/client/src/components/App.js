@@ -52,6 +52,8 @@ function App() {
             <Route path='/account' element={loggedInStatus ? (<Account/>) : (<Navigate to='/login' replace />)}/>
             <Route path='/myTeam/' element ={loggedInStatus ? (<MyTeam/>): (<Navigate to='/login' replace/>)} />           
           </Routes>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8244428999939750"
+     crossorigin="anonymous"></script>
       </Router>
     </div>
   );
