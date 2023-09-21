@@ -1,7 +1,7 @@
 import API from './client';
 import { fetchCurrentMatchWeek } from './matchweek';
 
-export const fetchUserTeam =async () => {
+export const fetchUserTeam =async (user_id) => {
     try {
         const response = await API.get('myTeam/mine');
         return response.data;
@@ -45,7 +45,7 @@ export const isModifiable = async () => {
         const currentDate = new Date();
         currentDate.setHours(currentDate.getHours() - 3);
         const deadlineDate = new Date(deadline?.start_date);
-        console.log(deadlineDate, currentDate)
+
         if (currentDate < deadlineDate){
             return true
         } else {

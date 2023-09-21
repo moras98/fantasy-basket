@@ -49,8 +49,8 @@ function App() {
             <Route  path='/games/:gameId' element={<GameStats/>}/>
             <Route path='/leaderboard' element ={<UsersTeams/>} />
             {/* Private Routes */}
-            <Route path='/account' element={loggedInStatus ? (<Account/>) : (<Navigate to='./login' replace />)}/>
-            <Route path='/myTeam/' element ={loggedInStatus ? (<MyTeam/>): (<Navigate to='./login' replace/>)} />           
+            <Route path='/account' element={loggedInStatus ? (<Account/>) : (<Navigate to='/login' replace />)}/>
+            <Route path='/myTeam/' element ={loggedInStatus ? (<MyTeam/>): (<Navigate to='/login' replace/>)} />           
           </Routes>
       </Router>
     </div>

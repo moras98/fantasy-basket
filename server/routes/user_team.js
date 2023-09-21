@@ -20,9 +20,11 @@ module.exports = (app, passport) => {
 
     router.get('/mine', async (req, res, next) => {
         try {
-            const { id } = req.user;
-            const response = await UserTeamServiceInstance.findOneByUserId(id);
-            res.status(200).send(response);
+            if (req.user) {
+                const { id } = req.user;
+                const response = await UserTeamServiceInstance.findOneByUserId(id);
+                res.status(200).send(response);
+            }
         } catch(err) {
             next(err);
         }

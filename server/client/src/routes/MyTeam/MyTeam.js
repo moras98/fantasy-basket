@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPlayers } from "../../store/player/Player.actions";
-import { Container, Paper, Card, CardContent, Typography } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import { checkModifiable, loadMyTeam } from "../../store/users_teams/UsersTeams.actions";
 import PlayerCard from "../../components/PlayerCard/PlayerCard";
 import { loadTeams } from '../../store/team/Team.actions';
@@ -12,7 +12,6 @@ export default function MyTeam() {
     const modifiableStatus = useSelector(state => state.usersTeams.modifiable);
     const teams = useSelector(state => state.teams);
     const players = useSelector(state=>state.players);
-    // const players = useSelector(state => state.players);
 
     useEffect(()=>{
         async function load(){
@@ -23,7 +22,6 @@ export default function MyTeam() {
         }
         load();
     }, [dispatch]);
-
 
     return(
         <section style={{padding: '0 5%'}}>
@@ -54,11 +52,11 @@ export default function MyTeam() {
                     width: "80%",
                     }}
                 >
-                    <PlayerCard player={players[myTeam.player1_id]} modifiableStatus={modifiableStatus} teams={teams} position={'BASE'} players={players}/>
-                    <PlayerCard player={players[myTeam.player2_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ESCOLTA'} players={players}/>
-                    <PlayerCard player={players[myTeam.player3_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ALERO'} players={players}/>
-                    <PlayerCard player={players[myTeam.player4_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ALA-PIVOT'} players={players}/>
-                    <PlayerCard player={players[myTeam.player5_id]} modifiableStatus={modifiableStatus} teams={teams} position={'PIVOT'} players={players}/>
+                    <PlayerCard player={players[myTeam?.player1_id]} modifiableStatus={modifiableStatus} teams={teams} position={'BASE'} players={players}/>
+                    <PlayerCard player={players[myTeam?.player2_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ESCOLTA'} players={players}/>
+                    <PlayerCard player={players[myTeam?.player3_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ALERO'} players={players}/>
+                    <PlayerCard player={players[myTeam?.player4_id]} modifiableStatus={modifiableStatus} teams={teams} position={'ALA-PIVOT'} players={players}/>
+                    <PlayerCard player={players[myTeam?.player5_id]} modifiableStatus={modifiableStatus} teams={teams} position={'PIVOT'} players={players}/>
                 </div>
             </Container>
         </section>

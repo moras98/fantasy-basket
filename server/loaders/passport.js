@@ -2,9 +2,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const AuthService = require('../services/AuthService');
+const UserService = require('../services/UserService');
 const AuthServiceInstance = new AuthService();
 
-
+const UserServiceInstance = new UserService();
 
 module.exports = (app) => {
 
@@ -18,8 +19,14 @@ module.exports = (app) => {
     });
     
     // Set method to deserialize data stored in cookie and attach to req.user
-    passport.deserializeUser((id, done) => {
-      done(null, { id });
+    passport.deserializeUser(async (id, done) => {
+      try {
+        const data = {id: id}
+        const user = await UserServiceInstance.get(data);
+        done(null, user);
+      } catch(err){
+        return done(err)
+      }
     });
   
     // Configure strategy to be use for local login
