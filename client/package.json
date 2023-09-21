@@ -27,8 +27,6 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://moras98.github.io/"
+  "homepage": "/"
 }
