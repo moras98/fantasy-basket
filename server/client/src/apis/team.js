@@ -3,7 +3,6 @@ import API from './client';
 export const fetchTeams = async () => {
     try {
       const response = await API.get(`teams`);
-  
       return response.data;
   
     } catch (err) {

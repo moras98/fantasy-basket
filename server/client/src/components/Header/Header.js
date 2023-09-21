@@ -111,13 +111,13 @@ export default function Header (){
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('/teams')}}>
+              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('./teams')}}>
                 <Typography textAlign="center">Equipos</Typography>
               </MenuItem>
-              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('/players')}}>
+              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('./players')}}>
                 <Typography textAlign="center">Jugadores</Typography>
               </MenuItem>
-              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('/games')}}>
+              <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('./games')}}>
                 <Typography textAlign="center">Partidos</Typography>
               </MenuItem>
             </Menu>
@@ -141,11 +141,11 @@ export default function Header (){
             FANTASY FUBB
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('/teams')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/teams')? 'transparent': 'transparent' }}>Equipos</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('/players')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/players')? 'transparent': 'transparent' }}>Jugadores</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('/games')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/games')? 'transpaernt': 'transparent' }}>Partidos</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('/leaderboard')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/leaderboard')? 'transpaernt': 'transparent' }}>Leaderboard</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('/myTeam')}} sx={{ my: 2, color: 'white', display: loggedInStatus ? 'block': 'none', backgroundColor: location.pathname.startsWith('/myTeam')? 'transpaernt': 'transparent' }}>My Team</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./teams')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/teams')? 'transparent': 'transparent' }}>Equipos</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./players')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/players')? 'transparent': 'transparent' }}>Jugadores</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./games')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/games')? 'transpaernt': 'transparent' }}>Partidos</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./leaderboard')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/leaderboard')? 'transpaernt': 'transparent' }}>Leaderboard</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./myTeam')}} sx={{ my: 2, color: 'white', display: loggedInStatus ? 'block': 'none', backgroundColor: location.pathname.startsWith('/myTeam')? 'transpaernt': 'transparent' }}>My Team</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -170,8 +170,8 @@ export default function Header (){
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             > <Typography textAlign="center" fontWeight="bold">{loggedInStatus? user?.username.toUpperCase(): ""}</Typography>
-              <MenuItem onClick={()=>{handleCloseUserMenu(); navigate('/login')}} sx={{display: loggedInStatus? 'none':'block'}}><Typography textAlign="center">Iniciar Sesíon</Typography></MenuItem>
-              <MenuItem onClick={()=>{handleCloseUserMenu(); navigate('/register')}} sx={{display: loggedInStatus? 'none':'block'}}><Typography textAlign="center">Registrarse</Typography></MenuItem>
+              <MenuItem onClick={()=>{handleCloseUserMenu(); navigate('./login')}} sx={{display: loggedInStatus? 'none':'block'}}><Typography textAlign="center">Iniciar Sesíon</Typography></MenuItem>
+              <MenuItem onClick={()=>{handleCloseUserMenu(); navigate('./register')}} sx={{display: loggedInStatus? 'none':'block'}}><Typography textAlign="center">Registrarse</Typography></MenuItem>
               <MenuItem onClick={()=>{handleCloseUserMenu(); handleLogout()}} sx={{display: loggedInStatus? 'block':'none'}}><Typography textAlign="center">Cerrar Sesíon</Typography></MenuItem>
             </Menu>
           </Box>

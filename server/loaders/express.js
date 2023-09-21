@@ -4,7 +4,7 @@ const session = require('express-session');
 const { SESSION_SECRET } = require('../config');
 
 module.exports = (app) => {
-
+  
   // Enable Cross Origin Resource Sharing to all origins by default
   app.use(cors());
 
@@ -26,7 +26,7 @@ module.exports = (app) => {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        secure: false,
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000
       }
     })

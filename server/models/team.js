@@ -45,7 +45,6 @@ module.exports = class Team {
             const statement = "SELECT * FROM teams;"
             const values = [];
             const result = await db.query(statement, values);
-
             if (result.rows?.length) {
                 return result.rows;
             }

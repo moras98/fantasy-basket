@@ -24,6 +24,10 @@ const playerSlice = createSlice({
                 const { id } = player;
                 state[id] = player;
             });
+            for (const player of players) {
+                const { id } = player;
+                state[id] = player;
+            }
         })
         .addCase(loadPlayersByTeam.fulfilled, (state, action) => {
             const { players } = action.payload;

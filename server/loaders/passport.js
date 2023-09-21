@@ -4,6 +4,8 @@ const LocalStrategy = require('passport-local');
 const AuthService = require('../services/AuthService');
 const AuthServiceInstance = new AuthService();
 
+
+
 module.exports = (app) => {
 
     // Initialize passport
@@ -31,6 +33,7 @@ module.exports = (app) => {
         }
       }
     ));
+
     return passport;
   
 }  
