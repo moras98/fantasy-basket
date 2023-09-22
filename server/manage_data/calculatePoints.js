@@ -1,5 +1,7 @@
 const { Client } = require("pg");
 const { DB } = require('../config');
+require('dotenv').config();
+
 
 const pointsCalculation = (stat, position) => {
     let totalPoints = 0;
@@ -34,11 +36,11 @@ const pointsCalculation = (stat, position) => {
 
     try {
         const db = new Client({
-            user: DB.PGUSER,
-            host: DB.PGHOST,
-            database: DB.PGDATABASE,
-            password: DB.PGPASSWORD,
-            port: DB.PGPORT
+            user: process.env.SUPABASE_USER,
+            host: process.env.SUPABASE_HOST,
+            database: process.env.SUPABASE_DB,
+            password: process.env.SUPABASE_PASSWORD,
+            port: process.env.SUPABASE_PORT
         });
 
         const playersPoints = [];

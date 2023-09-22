@@ -61,7 +61,7 @@ export default function Header (){
 
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#121212'}} elevation={5}>
+    <AppBar position="fixed" sx={{backgroundColor: '#ff9738', zIndex: 1000, color: 'black'}} elevation={5}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -120,6 +120,12 @@ export default function Header (){
               <MenuItem onClick={()=>{handleCloseNavMenu(); navigate('./games')}}>
                 <Typography textAlign="center">Partidos</Typography>
               </MenuItem>
+              <MenuItem onClick={() => {handleCloseNavMenu(); navigate('./leaderboard')}}>
+                <Typography textAlign={"center"}>Leaderboard</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => {handleCloseNavMenu(); navigate('./myTeam')}} sx={{display: loggedInStatus ? 'block' : 'none'}}>
+                <Typography textAlign={"center"}>MyTeam</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -134,18 +140,18 @@ export default function Header (){
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.2rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
             }}
           >
             FANTASY FUBB
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('./teams')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/teams')? 'transparent': 'transparent' }}>Equipos</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('./players')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/players')? 'transparent': 'transparent' }}>Jugadores</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('./games')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/games')? 'transpaernt': 'transparent' }}>Partidos</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('./leaderboard')}} sx={{ my: 2, color: 'white', display: 'block', backgroundColor: location.pathname.startsWith('/leaderboard')? 'transpaernt': 'transparent' }}>Leaderboard</Button>
-            <Button onClick={()=>{handleCloseNavMenu(); navigate('./myTeam')}} sx={{ my: 2, color: 'white', display: loggedInStatus ? 'block': 'none', backgroundColor: location.pathname.startsWith('/myTeam')? 'transpaernt': 'transparent' }}>My Team</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./teams')}} sx={{ my: 2, color: location.pathname.startsWith('/teams')? 'white': 'black', display: 'block', backgroundColor: location.pathname.startsWith('/teams')? '#ffb26b': 'transparent' }}>Equipos</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./players')}} sx={{ my: 2, color: location.pathname.startsWith('/players')? 'white': 'black', display: 'block', backgroundColor: location.pathname.startsWith('/players')? '#ffb26b': 'transparent' }}>Jugadores</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./games')}} sx={{ my: 2, color: location.pathname.startsWith('/games')? 'white': 'black', display: 'block', backgroundColor: location.pathname.startsWith('/games')? '#ffb26b': 'transparent' }}>Partidos</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./leaderboard')}} sx={{ my: 2, color: location.pathname.startsWith('/leaderboard')? 'white': 'black', display: 'block', backgroundColor: location.pathname.startsWith('/leaderboard')? '#ffb26b': 'transparent' }}>Leaderboard</Button>
+            <Button onClick={()=>{handleCloseNavMenu(); navigate('./myTeam')}} sx={{ my: 2, color: location.pathname.startsWith('/myTeam')? 'white': 'black', display: loggedInStatus ? 'block': 'none', backgroundColor: location.pathname.startsWith('/myTeam')? '#ffb26b': 'transparent',  }}>My Team</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

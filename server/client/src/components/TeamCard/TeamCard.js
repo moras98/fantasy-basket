@@ -8,7 +8,7 @@ export default function TeamCard({id, name, src}) {
     const navigate = useNavigate();
 
   return (
-    <Card elevation={8} sx={{ maxWidth: 345, "&:hover":{cursor: "pointer"} }} onClick={() => navigate(`/teams/${id}`)}>
+    <Card elevation={8} sx={{minWidth: 400 ,maxWidth: 500, "&:hover":{cursor: "pointer"} }} onClick={() => navigate(`/teams/${id}`)}>
       <CardMedia
         sx={{ height: 200, backgroundPositionY: '0', backgroundSize:'contain' }}
         image = {`/assets/badges/${src}`} 

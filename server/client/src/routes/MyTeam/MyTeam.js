@@ -38,6 +38,7 @@ export default function MyTeam() {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    padding: '20px'
                     
                 }}
                 elevation={8}
@@ -45,7 +46,6 @@ export default function MyTeam() {
                 <div
                     style={{
                     display: "flex",
-                    justifyContent: "space-between",
                     justifyContent: 'center',
                     flexWrap: 'wrap',
                     gap: "20px",

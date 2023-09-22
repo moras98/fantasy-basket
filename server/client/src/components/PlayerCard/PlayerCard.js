@@ -54,7 +54,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
 
     return (
         <div>
-            <Card component={Paper} sx={{maxWidth: 400, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Card component={Paper} sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <CardMedia sx={{height:130, display: player?'block':'none'}}><PersonIcon sx={{height: 130, width: 'auto'}}/></CardMedia>
             <CardContent sx={{display: player?'block':'none'}}>
                 <Typography gutterBottom variant="h5" component="div">
