@@ -50,7 +50,7 @@ export default function UsersTeams(){
                                 <TableRow key={key}>
                                     <TableCell>{posicion}</TableCell>
                                     <TableCell align="right">{users[team?.user_id]?.username}</TableCell>
-                                    <TableCell align="right">{team?.points}</TableCell>
+                                    <TableCell align="right">{team?.points.toLocaleString()}</TableCell>
                                 </TableRow>
                             )
                         })}

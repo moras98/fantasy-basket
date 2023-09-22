@@ -32,8 +32,8 @@ export default function MyTeam() {
         <section className="main-section">
             <div className="sub-section" style={{padding: '0 5%', gap: 10, marginTop: "100px"}}>
                 <Stack sx={{color: "black", width: "100%", padding: "5px", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}} component={Paper} elevation={5}>
-                    <p>Puntos: <b style={{color:"#ff9738"}}>{myTeam?.points}pts</b></p>
-                    <p>Dinero: <b style={{color:"#ff9738"}}>${myTeam?.money}</b></p>
+                    <p>Puntos: <b style={{color:"#ff9738"}}>{myTeam?.points.toLocaleString()}pts</b></p>
+                    <p>Dinero: <b style={{color:"#ff9738"}}>${myTeam?.money.toLocaleString()}</b></p>
                     <p>Mercado: <b style={{color:"#ff9738", display: modifiableStatus? 'inline-block':'none'}}>Si</b><b style={{color:"#ff9738", display: !modifiableStatus? 'inline-block':'none'}}>No</b></p>
                     <HelpOutlineIcon onClick={()=> handleOpenHelp()}/>
                 </Stack>
