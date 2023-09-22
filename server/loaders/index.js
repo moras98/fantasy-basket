@@ -18,9 +18,9 @@ module.exports = async (app) => {
   await swaggerLoader(app);
 
 
-  // app.get('*', function (req, res) {
-  //   res.sendFile(path.join(__dirname + '../client/build/index.html'));
-  // });
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname + '../client/build/index.html'));
+  });
   
   // Error Handler
   app.use((err, req, res, next) => {
