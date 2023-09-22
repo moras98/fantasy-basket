@@ -8,11 +8,14 @@ const path = require('path');
 
 async function startServer() {
 
+  app.use(express.static(path.resolve(__dirname, './client/build/')));
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  });
+
   // Init application loaders
   loaders(app);
-
-  app.use(express.static(path.resolve(__dirname, './client/build/')));
-
+  
   // Start server
   app.listen(PORT, () => {
     console.log(`Server listening on PORT ${PORT}`);
