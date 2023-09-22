@@ -68,13 +68,13 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                 <Typography sx={{color: 'green'}}>
                     <b>${player?.value}</b>
                 </Typography>
-                <Button onClick={()=>handleClickSell(player)} sx={{display: modifiableStatus?'row':'none'}}>Vender</Button>
+                <Button onClick={()=>handleClickSell(player)} sx={{display: modifiableStatus?'row':'none', color: '#ff9738', fontWeight: 'bold'}}>Vender</Button>
             </CardContent>
             {/* si no hay jugador */}
             <CardActionArea sx={{display: player?'none':'block'}} onClick={() => setShowPlayerList(true)}>
                 <CardMedia><AddIcon sx={{height: 130, width: 'auto'}}/></CardMedia>
                 <CardContent>
-                    <Typography variant="body2" sx={{color: '#1976D2'}}>COMPRAR {position}</Typography>
+                    <Typography variant="body2" sx={{color: '#ff9738', fontWeight: 'bold'}}>COMPRAR {position}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
@@ -112,7 +112,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                                     <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
                                     <TableCell align='right'>{player?.position}</TableCell>
                                     <TableCell align='right'>{player?.value}</TableCell>
-                                    <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}}>Comprar</Button></TableCell>
+                                    <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}}>Comprar</Button></TableCell>
                                 </TableRow>
                             )
                         })}
