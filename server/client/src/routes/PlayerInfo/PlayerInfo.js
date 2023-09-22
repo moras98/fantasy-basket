@@ -31,7 +31,7 @@ function PlayerInfo() {
 
 
     return (
-        <section style={{padding: '0 5%'}}>
+        <section style={{padding: '0 5%'}} className='main-section'>
              {/* <PlayersList players={[player]}/> */}
              <div>
                 <h2>{player?.first_name} {player?.last_name}</h2>

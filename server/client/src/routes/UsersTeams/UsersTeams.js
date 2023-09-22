@@ -30,7 +30,7 @@ export default function UsersTeams(){
 
     return (
         //Lista que contiene a todos los equipos ordenados por puntos
-        <section style={{padding:'0 5%'}}>
+        <section style={{padding:'0 5%'}} className="main-section">
             <h1>Tabla de Posiciones</h1>
             <TableContainer component={Paper}>
                 <Table aria-label='leaderboard'>

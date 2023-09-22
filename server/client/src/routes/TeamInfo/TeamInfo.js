@@ -46,7 +46,8 @@ function TeamInfo() {
     }
 
     return (
-        <section>
+        <section className='main-section'>
+            <div className='sub-section'>
             <h1>{team?.name}</h1>
             <div id='tablesGrid'>
                 <div>
@@ -114,6 +115,7 @@ function TeamInfo() {
                         </Table>
                     </TableContainer>
                 </div>
+            </div>
             </div>
         </section>
     );

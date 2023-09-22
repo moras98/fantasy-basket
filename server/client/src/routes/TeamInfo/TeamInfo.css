@@ -1,16 +1,17 @@
-#tablesGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crea columnas que se ajustan automáticamente */
-    gap: 20px; /* Espacio entre elementos */
-    padding: 0 5%; /* Márgenes horizontales */
+#teamsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
+  gap: 20px; 
+  flex-direction: row;
 }
 
-  /* Media query para ajustar el número de columnas en tamaños de pantalla más pequeños */
-  @media (max-width: 768px) {
-    #teamsGrid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cambia el tamaño mínimo de las columnas para dispositivos más pequeños */
-      padding: 0 3%; /* Ajusta los márgenes horizontales */
-    }
+/* Media query para ajustar el diseño en tamaños de pantalla más pequeños */
+@media (max-width: 768px) {
+  #teamsGrid {
+    justify-content: center;
+  }
 }
 
   

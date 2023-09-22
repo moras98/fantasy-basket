@@ -22,3 +22,25 @@ section h2 {
   font-size: 2rem;
   font-weight: bold;
 }
+
+.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  min-height: 100vh;
+  max-width: 100vw;
+  background-color: #1b1e1d;
+}
+
+.sub-section {
+margin-top: 20px;
+padding: 5px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+color: white;
+justify-content: center;
+}

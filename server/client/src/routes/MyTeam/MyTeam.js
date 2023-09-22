@@ -24,7 +24,7 @@ export default function MyTeam() {
     }, [dispatch]);
 
     return(
-        <section style={{padding: '0 5%'}}>
+        <section style={{padding: '0 5%'}} className="main-section">
             <h1>MyTeam</h1>
             <h2>{myTeam?.points}pts - ${myTeam?.money}</h2>
             <Container

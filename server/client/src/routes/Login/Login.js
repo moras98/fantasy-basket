@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../components/Button/Button';
+import {Button} from "@mui/material"
 import TextField from '../../components/TextField/TextField';
 
 import './Login.css';
@@ -42,7 +42,7 @@ const Login = () => {
   })
 
   return (
-    <div className="app">
+    <section className="main-section">
       <div>
       {showError && <Alert severity="error" onClose={()=>{setShowError(false)}}>Email y/o contraseña incorrectas</Alert>}
       </div>
@@ -75,12 +75,21 @@ const Login = () => {
               {
                 error && <div>{error}</div>
               }
-              <Button variant="contained" color="primary" type="submit" isLoading={isLoading}>Enviar</Button>
+              <Button sx={{height: 75, 
+                  width: 300, 
+                  borderColor: "#ff9738",
+                  backgroundColor:  "#ff9738",
+                  color: "black", 
+                  fontWeight: "bold",
+                  fontSize: '1rem',
+                  '&:hover': {color: '#1b1e1d', border: "1px solid #ff9738", backgroundColor: "#ff9738"}
+                  }}
+                  variant="contained" type="submit" isLoading={isLoading}>Enviar</Button>
             </Form>
           </Formik>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

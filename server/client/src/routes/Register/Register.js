@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../components/Button/Button';
-import { Divider } from '@mui/material';
+import {Button} from '@mui/material';
 import TextField from '../../components/TextField/TextField';
 
 import '../Login/Login.css';
@@ -44,7 +43,7 @@ const Register = () => {
   })
 
   return (
-    <div className="app">
+    <section className="main-section">
       <div className="formComp">
         <div className="formWrapper">
           <Formik
@@ -85,12 +84,22 @@ const Register = () => {
               {
                 error && <div>{error}</div>
               }
-              <Button variant="contained" color="primary" type="submit" isLoading={isLoading}>Registrarse</Button>
+              <Button
+              sx={{height: 75, 
+                width: 300, 
+                borderColor: "#ff9738",
+                backgroundColor:  "#ff9738",
+                color: "black", 
+                fontWeight: "bold",
+                fontSize: '1rem',
+                '&:hover': {color: '#1b1e1d', border: "1px solid #ff9738", backgroundColor: "#ff9738"}
+                }}
+              variant="contained" color="primary" type="submit" isLoading={isLoading}>Registrarse</Button>
             </Form>
           </Formik>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

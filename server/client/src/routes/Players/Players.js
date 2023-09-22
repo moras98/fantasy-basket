@@ -18,9 +18,15 @@ function Players(){
         return <p>Cargando...</p>
     }
     return(
-        <section style={{padding: "0 5%"}}>
-            <h1>Jugadores</h1>
-            <PlayersList players={players}/>
+        <section className='main-section' style={{padding: "0 5%"}}>
+            <div className='sub-section'>
+                <div>
+                    <h1>Jugadores</h1>
+                </div>
+                <div>
+                    <PlayersList players={players}/>
+                </div>
+            </div>
         </section>
     );
 };

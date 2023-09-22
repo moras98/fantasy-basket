@@ -62,7 +62,7 @@ export default function PlayersList({ players }) {
           }}
           disableRowSelectionOnClick
           autoHeight
-          sx={{maxWidth: "100%"}}
+          sx={{width: "90vw"}}
           onRowClick={(row)=> navigate(`${row.id}`)}
         />
       </Box>
