@@ -66,7 +66,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                     <br/>
                 </Typography>
                 <Typography sx={{color: 'green'}}>
-                    <b>${player?.value.toLocaleString()}</b>
+                    <b>${player?.value?.toLocaleString()}</b>
                 </Typography>
                 <Button onClick={()=>handleClickSell(player)} sx={{display: modifiableStatus?'row':'none', color: '#ff9738', fontWeight: 'bold'}}>Vender</Button>
             </CardContent>
@@ -111,7 +111,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                                     <TableCell>{player?.first_name} {player?.last_name}</TableCell>
                                     <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
                                     <TableCell align='right'>{player?.position}</TableCell>
-                                    <TableCell align='right'>{player?.value.toLocaleString()}</TableCell>
+                                    <TableCell align='right'>{player?.value?.toLocaleString()}</TableCell>
                                     <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}}>Comprar</Button></TableCell>
                                 </TableRow>
                             )
