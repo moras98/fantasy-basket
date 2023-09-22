@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserTeams } from "../../store/users_teams/UsersTeams.actions";
 import Table from '@mui/material/Table';
@@ -24,7 +24,17 @@ export default function UsersTeams(){
     }, [dispatch]);
 
 
-    if (!usersteams) {
+    // if (!usersteams) {
+    //     return <p>Cargando...</p>
+    // }
+
+    const sortedTeams = useMemo(() => {
+        if (!usersteams) return [];
+        const teamsArray = Object.keys(usersteams).map(key => usersteams[key]);
+        return teamsArray.sort((a, b) => b.points - a.points);
+    }, [usersteams]);
+
+    if (!sortedTeams) {
         return <p>Cargando...</p>
     }
 
@@ -41,7 +51,7 @@ export default function UsersTeams(){
                             <TableCell align="right">Puntos</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    {/* <TableBody>
                         {
                             usersteams && Object.keys(usersteams).length > 0 && Object.keys(usersteams).map((key, index) => {
                             const team = usersteams[key];
@@ -54,6 +64,15 @@ export default function UsersTeams(){
                                 </TableRow>
                             )
                         })}
+                    </TableBody> */}
+                    <TableBody>
+                        {sortedTeams.map((team, index) => (
+                            <TableRow key={team.user_id}>
+                                <TableCell>{index + 1}</TableCell>
+                                <TableCell align="right">{users[team?.user_id]?.username}</TableCell>
+                                <TableCell align="right">{team?.points.toLocaleString()}</TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
