@@ -76,7 +76,7 @@ const Login = () => {
                 error && <div>{error}</div>
               }
               <Button sx={{height: 75, 
-                  width: 300, 
+                  maxWidth: 300, 
                   borderColor: "#ff9738",
                   backgroundColor:  "#ff9738",
                   color: "black", 
