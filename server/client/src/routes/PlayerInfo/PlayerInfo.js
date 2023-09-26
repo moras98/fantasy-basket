@@ -35,7 +35,7 @@ function PlayerInfo() {
              {/* <PlayersList players={[player]}/> */}
              <div>
                 <h2>{player?.first_name} {player?.last_name}</h2>
-                <h3>{teams[player?.team_id].name} - {player?.position} - {player?.height}(cm) - {calcularEdad(player?.age)} - ${player?.value}</h3>
+                <h3>{teams[player?.team_id].name} - {player?.position} - {player?.height}(cm) - {calcularEdad(player?.age)} - ${player?.value?.toLocaleString()}</h3>
              </div>
              <GameStatsTable playerId={playerId}/>
         </section>

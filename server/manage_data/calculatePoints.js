@@ -6,19 +6,19 @@ require('dotenv').config();
 const pointsCalculation = (stat, position) => {
     let totalPoints = 0;
     if (position === 'BASE'){
-        totalPoints = (stat.points_scored + stat.assists * 2 + stat.def_rebounds + stat.off_rebounds);
+        totalPoints = (stat.points_scored + stat.assists * 2 + stat.def_rebounds + stat.off_rebounds + stat.threes_scored + stat.steals + stat.blocks - stat.losts);
     }
     if (position === 'ESCOLTA'){
-        totalPoints = (stat.points_scored * 2 + stat.assists + stat.def_rebounds + stat.off_rebounds);
+        totalPoints = (stat.points_scored * 2 + stat.assists + stat.def_rebounds + stat.off_rebounds + stat.threes_scored + stat.steals + stat.blocks - stat.losts);
     }
     if (position === 'ALERO'){
-        totalPoints = (stat.points_scored + stat.assists + stat.def_rebounds + stat.off_rebounds * 2);
+        totalPoints = (stat.points_scored + stat.assists + stat.def_rebounds + stat.off_rebounds + 3 * stat.threes_scored + stat.steals + stat.blocks - stat.losts);
     }
     if (position === 'ALA-PIVOT'){
-        totalPoints = (stat.points_scored  + stat.assists + stat.def_rebounds * 2 + stat.off_rebounds);
+        totalPoints = (stat.points_scored  + stat.assists + stat.def_rebounds * 2 + stat.off_rebounds + stat.threes_scored + stat.steals + stat.blocks - stat.losts);
     }
     if (position === 'PIVOT'){
-        totalPoints = (stat.points_scored  + stat.assists + stat.def_rebounds * 2 + stat.off_rebounds * 2);
+        totalPoints = (stat.points_scored  + stat.assists + stat.def_rebounds * 2 + stat.off_rebounds * 2 + stat.threes_scored + stat.steals + stat.blocks - stat.losts);
     }
 
     return totalPoints;

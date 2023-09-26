@@ -60,9 +60,13 @@ export default function GameStatsTable({ playerId, gameId }){
         const averages = {
             time_played: 0,
             points_scored: 0,
+            threes_scored: 0,
             off_rebounds: 0,
             def_rebounds: 0,
             assists: 0,
+            losts: 0,
+            steals: 0,
+            blocks: 0,
         };
 
         const statsCount = Object.keys(game_stats).length;
@@ -73,9 +77,13 @@ export default function GameStatsTable({ playerId, gameId }){
             const stats = game_stats[key];
             averages.time_played += timeToSeconds(stats.time_played);
             averages.points_scored += stats.points_scored;
+            averages.threes_scored += stats.threes_scored;
             averages.off_rebounds += stats.off_rebounds;
             averages.def_rebounds += stats.def_rebounds;
             averages.assists += stats.assists;
+            averages.losts += stats.losts;
+            averages.steals += stats.steals;
+            averages.blocks += stats.blocks;
         });
 
         // Calcular promedios dividiendo por el número de estadísticas
@@ -94,13 +102,17 @@ export default function GameStatsTable({ playerId, gameId }){
             <Table aria-label='stats table'>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{display: gameId?'none': 'flex'}}>Partido</TableCell>
-                        <TableCell align='right' sx={{display: playerId?'none': 'flex'}}>Jugador</TableCell>
-                        <TableCell align='right'>Tiempo Jugado</TableCell>
-                        <TableCell align='right'>Puntos</TableCell>
-                        <TableCell align='right'>Rebotes Ofensivos</TableCell>
-                        <TableCell align='right'>Rebotes Defensivos</TableCell>
-                        <TableCell align='right'>Asistencias</TableCell>
+                        <TableCell sx={{display: gameId?'none': 'flex'}}>PARTIDO</TableCell>
+                        <TableCell align='right' sx={{display: playerId?'none': 'flex'}}>JUGADOR</TableCell>
+                        <TableCell align='right'>MINS</TableCell>
+                        <TableCell align='right'>PTS</TableCell>
+                        <TableCell align='right'>3PTS</TableCell>
+                        <TableCell align='right'>REO</TableCell>
+                        <TableCell align='right'>RED</TableCell>
+                        <TableCell align='right'>ASI</TableCell>
+                        <TableCell align='right'>PER</TableCell>
+                        <TableCell align='right'>ROB</TableCell>
+                        <TableCell align='right'>BLQ</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -115,9 +127,13 @@ export default function GameStatsTable({ playerId, gameId }){
                                 <TableCell align='right' sx={{display: playerId?'none': 'flex'}}>{players[stats.player_id]?.first_name} {players[stats.player_id]?.last_name} ({teams[players[stats.player_id]?.team_id]?.name})</TableCell>
                                 <TableCell align='right'>{stats.time_played}</TableCell>
                                 <TableCell align='right'>{stats.points_scored}</TableCell>
+                                <TableCell align='right'>{stats.threes_scored}</TableCell>
                                 <TableCell align='right'>{stats.off_rebounds}</TableCell>
                                 <TableCell align='right'>{stats.def_rebounds}</TableCell>
                                 <TableCell align='right'>{stats.assists}</TableCell>
+                                <TableCell align='right'>{stats.losts}</TableCell>
+                                <TableCell align='right'>{stats.steals}</TableCell>
+                                <TableCell align='right'>{stats.blocks}</TableCell>
                             </TableRow>
                         )
                     })}
@@ -125,9 +141,13 @@ export default function GameStatsTable({ playerId, gameId }){
                             <TableCell component="th" scope='row' sx={{fontWeight: 'bold'}}>Promedios:</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{secondsToTime(averages.time_played)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.points_scored.toFixed(2)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.threes_scored.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.off_rebounds.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.def_rebounds.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.assists.toFixed(2)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.losts.toFixed(2)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.steals.toFixed(2)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.blocks.toFixed(2)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

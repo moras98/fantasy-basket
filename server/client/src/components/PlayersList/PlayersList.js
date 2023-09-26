@@ -9,12 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  {field:'fullName', headerName: 'Nombre', sortable: false, flex: 1},
-  {field: 'team', headerName: 'Equipo', flex: 1 , align: 'right', headerAlign: 'right'},
-  {field: 'position', headerName: 'Posición', flex: 1, align: 'right', headerAlign: 'right'},
-  {field: 'height', headerName: 'Altura (cm)', flex: 1, align: 'right', headerAlign: 'right'},
-  {field: 'age', headerName: 'Edad', flex: 1, align: 'right', headerAlign: 'right'},
-  {field: 'value', headerName: 'Valor', flex: 1, align: 'right', headerAlign: 'right'}
+  {field:'fullName', headerName: 'NOM', sortable: false, flex: 1},
+  {field: 'team', headerName: 'EQ', flex: 1 , align: 'right', headerAlign: 'right'},
+  {field: 'position', headerName: 'POS', flex: 1, align: 'right', headerAlign: 'right'},
+  {field: 'height', headerName: 'ALT (cm)', flex: 1, align: 'right', headerAlign: 'right'},
+  {field: 'age', headerName: 'EDAD', flex: 1, align: 'right', headerAlign: 'right'},
+  {field: 'value', headerName: 'VALOR', flex: 1, align: 'right', headerAlign: 'right'}
 ]
 
 
@@ -41,7 +41,7 @@ export default function PlayersList({ players }) {
           position: player.position,
           height: player.height,
           age: calcularEdad(player.age),
-          value: player.value,
+          value: player.value?.toLocaleString(),
         };
       })
     : [];
