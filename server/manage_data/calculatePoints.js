@@ -32,7 +32,9 @@ const pointsCalculation = (stat, position) => {
     const getGameStatsStmt = (id) => `SELECT * FROM games_stats WHERE game_id = ${id};`;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
-    const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE id =${id};`
+    const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE id =${id};`;
+    const resetLastPointsStmt = () => `UPDATE users_teams SET last_points = 0;`;
+    const lastPointsStmt = (id, points) => `UPDATE users_teams SET last_points = last_points ${points} WHERE id=${id};`;
 
     try {
         const db = new Client({
@@ -45,8 +47,10 @@ const pointsCalculation = (stat, position) => {
 
         const playersPoints = [];
         await db.connect();
-        
+        //RESETEO A 0
+        await db.query(resetLastPointsStmt());
         //BUSCO LOS PARTIDOS QUE SE JUGARON EN LA FECHA 
+
         const gamesId = await db.query(getGamesStmt(matchweek_id));
         gamesIds = gamesId.rows;
         
@@ -90,7 +94,8 @@ const pointsCalculation = (stat, position) => {
             
             if (usersTeamsRows.length) {
                for (const userTeam of usersTeamsRows){
-                    await db.query(sumPointsStmt(userTeam.id, playerInfo.calculatedPoints))
+                    await db.query(sumPointsStmt(userTeam.id, playerInfo.calculatedPoints));
+                    await db.query(lastPointsStmt(userTeam.id, playerInfo.calculatedPoints));
                }
             }
             

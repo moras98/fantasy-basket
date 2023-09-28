@@ -32,10 +32,10 @@ export default function MyTeam() {
         <section className="main-section">
             <div className="sub-section" style={{padding: '0 5%', gap: 10, marginTop: "100px"}}>
                 <Stack sx={{color: "black", width: "100%", padding: "5px", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}} component={Paper} elevation={5}>
-                    <p>Puntos: <b style={{color:"#ff9738"}}>{myTeam?.points?.toLocaleString()}pts</b></p>
+                    <p>Puntos: <b style={{color:"#ff9738"}}>{myTeam?.points?.toLocaleString()}pts ({myTeam?.last_points?.toLocaleString()})</b></p>
                     <p>Dinero: <b style={{color:"#ff9738"}}>${myTeam?.money?.toLocaleString()}</b></p>
                     <p>Mercado: <b style={{color:"#ff9738", display: modifiableStatus? 'inline-block':'none'}}>Si</b><b style={{color:"#ff9738", display: !modifiableStatus? 'inline-block':'none'}}>No</b></p>
-                    <HelpOutlineIcon onClick={()=> handleOpenHelp()}/>
+                    <HelpOutlineIcon onClick={()=> handleOpenHelp()} sx={{'&:hover':{cursor: 'pointer'}}}/>
                 </Stack>
                 <Modal
                     open={openHelp}
@@ -57,8 +57,8 @@ export default function MyTeam() {
                             <h3>¿Cómo funciona MyTeam?</h3>
                             <p><b>Mercado:</b> El período de transferencias para modificar el equipo se encuentra disponible a partir de la otorgación de los puntos finalizada la fecha anterior y hasta el día previo de arranque de la nueva fecha, hasta las 23.59 hrs.</p>
                             <p><b>Jugadores:</b> Los jugadores solo tienen disponibles una única posición en la que pueden jugar, a pesar de que en la vida real el jugador pueda desempeñar diferentes roles.</p>
-                            <p><b>Puntuación:</b> Los puntos por fecha que otorga cada jugador se calcula en función de puntos marcados, asistencias, rebotes defensivos y rebotes ofensivos. Según la posición del jugador una o más estadísticas obtienen un multiplicador de x2.
-                                BASE: ASISTENCIAS, ESCOLTA: PUNTOS, ALERO: REBOTES OF, ALA-PIVOT: REBOTES DEF, PIVOT: REBOTES OF Y REBOTES DEF </p>
+                            <p><b>Puntuación:</b> Los puntos por fecha que otorga cada jugador se calcula en función de puntos marcados, triples encestaods, asistencias, rebotes defensivos, rebotes ofensivos, robos, tapones y pérdidas. Según la posición del jugador una o más estadísticas obtienen un multiplicador.
+                                BASE: ASISTENCIAS x2, ESCOLTA: PUNTOS x2, ALERO: TRIPLES X3, ALA-PIVOT: REBOTES DEF x2, PIVOT: REBOTES OF Y REBOTES DEF x2</p>
                     </Container>
                 </Modal>
                 <Container
