@@ -1,9 +1,9 @@
 "use strict";
 
 const { Pool } = require('pg');
-const { DB } =require('../config');
+/* const { DB } =require('../config'); */
 require('dotenv').config()
-const { createClient } = require("@supabase/supabase-js");
+/* const { createClient } = require("@supabase/supabase-js"); */
 
 // const pool = new Pool({
 //   user: DB.PGUSER,
