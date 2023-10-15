@@ -32,9 +32,10 @@ export default function PlayersList({ players }) {
   }, [dispatch]);
 
   const data = players
-    ? Object.keys(players).map(key => {
-        const player = players[key];
-        return {
+    ? Object.keys(players)
+        .map(key => players[key])
+        .sort((a, b) => a.team_id - b.team_id)
+        .map(player => ({
           id: player.id,
           fullName: `${player.first_name} ${player.last_name}`,
           team: teams[player.team_id]?.name,
@@ -42,8 +43,7 @@ export default function PlayersList({ players }) {
           height: player.height,
           age: calcularEdad(player.age),
           value: player.value?.toLocaleString(),
-        };
-      })
+        }))
     : [];
 
   return (
