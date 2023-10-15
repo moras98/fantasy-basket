@@ -1,17 +1,7 @@
 "use strict";
 
 const { Pool } = require('pg');
-/* const { DB } =require('../config'); */
 require('dotenv').config()
-/* const { createClient } = require("@supabase/supabase-js"); */
-
-// const pool = new Pool({
-//   user: DB.PGUSER,
-//   host: DB.PGHOST,
-//   database: DB.PGDATABASE,
-//   password: DB.PGPASSWORD,
-//   port: DB.PGPORT, // El puerto predeterminado de PostgreSQL
-// });
 
 const supabaseHost = process.env.SUPABASE_HOST;
 const supabaseDB = process.env.SUPABASE_DB;
