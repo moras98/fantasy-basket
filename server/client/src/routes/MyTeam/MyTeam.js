@@ -34,7 +34,7 @@ export default function MyTeam() {
                 <Stack sx={{color: "black", width: "100%", padding: "5px", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}} component={Paper} elevation={5}>
                     <p>Puntos: <b style={{color:"#ff9738"}}>{myTeam?.points?.toLocaleString()}pts ({myTeam?.last_points?.toLocaleString()})</b></p>
                     <p>Dinero: <b style={{color:"#ff9738"}}>${myTeam?.money?.toLocaleString()}</b></p>
-                    <p>Mercado: <b style={{color:"#ff9738", display: modifiableStatus? 'inline-block':'none'}}>Si</b><b style={{color:"#ff9738", display: !modifiableStatus? 'inline-block':'none'}}>No</b></p>
+                    <p>Mercado: <b style={{color:"#ff9738", display: modifiableStatus? 'inline-block':'none'}}>Disponible</b><b style={{color:"#ff9738", display: !modifiableStatus? 'inline-block':'none'}}>Deshabilitado</b></p>
                     <HelpOutlineIcon onClick={()=> handleOpenHelp()} sx={{'&:hover':{cursor: 'pointer'}}}/>
                 </Stack>
                 <Modal
