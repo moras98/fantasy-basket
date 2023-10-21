@@ -9,6 +9,8 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
     const dispatch = useDispatch();
     const [showPlayerList, setShowPlayerList] = React.useState(false);
     const myTeam = useSelector(state => state.usersTeams.myTeam);
+    const [sellButtonDisabled, setSellButtonDisabled] = React.useState(false);
+    const [buyButtonDisabled, setBuyButtonDisabled] = React.useState(false);
 
     const filteredPlayers = (players, position) => {
         const filtered = {}
@@ -33,6 +35,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
         const data = {columnName, playerId, value};
 
         dispatch(sellPlayer(data));
+        setSellButtonDisabled(true);
 
     }
 
@@ -49,7 +52,8 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
         const data = {columnName, playerId, value};
 
         dispatch(buyPlayer(data));
-
+        setSellButtonDisabled(false);
+        setBuyButtonDisabled(true);
     }
 
     return (
@@ -68,7 +72,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                 <Typography sx={{color: 'green'}}>
                     <b>${player?.value?.toLocaleString()}</b>
                 </Typography>
-                <Button onClick={()=>handleClickSell(player)} sx={{display: modifiableStatus?'row':'none', color: '#ff9738', fontWeight: 'bold'}}>Vender</Button>
+                <Button onClick={()=>handleClickSell(player)} sx={{display: modifiableStatus?'row':'none', color: '#ff9738', fontWeight: 'bold'}} disabled={sellButtonDisabled}>Vender</Button>
             </CardContent>
             {/* si no hay jugador */}
             <CardActionArea sx={{display: player?'none':'block'}} onClick={() => setShowPlayerList(true)}>
@@ -112,7 +116,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                                     <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
                                     <TableCell align='right'>{player?.position}</TableCell>
                                     <TableCell align='right'>{player?.value?.toLocaleString()}</TableCell>
-                                    <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}}>Comprar</Button></TableCell>
+                                    <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value || buyButtonDisabled} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}} >Comprar</Button></TableCell>
                                 </TableRow>
                             )
                         })}
