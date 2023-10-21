@@ -36,6 +36,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
 
         dispatch(sellPlayer(data));
         setSellButtonDisabled(true);
+        setBuyButtonDisabled(false);
 
     }
 
