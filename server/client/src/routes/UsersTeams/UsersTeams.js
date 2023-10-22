@@ -70,7 +70,7 @@ export default function UsersTeams(){
                             <TableRow key={team.user_id}>
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell align="right">{users[team?.user_id]?.username}</TableCell>
-                                <TableCell align="right">{team?.points.toLocaleString()}</TableCell>
+                                <TableCell align="right">{team?.points.toLocaleString()}(+{team?.last_points.toLocaleString()})</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
