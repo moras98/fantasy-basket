@@ -57,7 +57,7 @@ function TeamInfo() {
                         <Table sx={{minWidth: 300}} aria-label='games table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Partido</TableCell>
+                                    {/* <TableCell>Partido</TableCell> */}
                                     <TableCell align='right'>Fecha</TableCell>
                                     <TableCell align='right'>Resultado</TableCell>
                                 </TableRow>
@@ -71,7 +71,7 @@ function TeamInfo() {
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}
                                         onClick={()=>{navigate(`/games/${game.id}`)}}
                                         >
-                                            <TableCell>{game.id}</TableCell>
+                                            {/* <TableCell>{game.id}</TableCell> */}
                                             <TableCell align='right'>{game.date.split('T')[0]}</TableCell>
                                             <TableCell align='right'>{teams[game.team1_id]?.name} {game.team1_score} - {game.team2_score} {teams[game.team2_id]?.name}</TableCell>
                                         </TableRow>
