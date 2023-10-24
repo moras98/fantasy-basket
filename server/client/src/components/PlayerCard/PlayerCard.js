@@ -20,9 +20,18 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
             }
         }
 
-        filtered.sort((a, b) => (a.value || 0) - (b.value || 0));
+        const sortedFiltered = {};
+        Object.keys(filtered)
+            .sort((playerIdA, playerIdB) => {
+            const valueA = filtered[playerIdA].value || 0;
+            const valueB = filtered[playerIdB].value || 0;
+            return valueA - valueB;
+            })
+            .forEach((playerId) => {
+            sortedFiltered[playerId] = filtered[playerId];
+            });
 
-        return filtered;
+        return sortedFiltered;
     }
 
     const handleClickSell = (player) => {
