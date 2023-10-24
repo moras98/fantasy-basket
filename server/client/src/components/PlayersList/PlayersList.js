@@ -21,8 +21,7 @@ const columns = [
     align: 'right',
     headerAlign: 'right',
     type: 'number', // Establecer el tipo de columna como número
-    sortable: true,
-    valueFormatter: (params) => (params.value ? params.value.toLocaleString() : null), // Formatear el valor como cadena
+    valueFormatter: (params) => (params.value ? params.value.toLocaleString() : null),
   }
 ]
 
@@ -51,7 +50,7 @@ export default function PlayersList({ players }) {
           position: player.position,
           height: player.height,
           age: calcularEdad(player.age),
-          value: player.value?.toLocaleString(),
+          value: player.value,
         }))
     : [];
 
