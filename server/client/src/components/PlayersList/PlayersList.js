@@ -14,7 +14,15 @@ const columns = [
   {field: 'position', headerName: 'POS', flex: 1, align: 'right', headerAlign: 'right'},
   {field: 'height', headerName: 'ALT (cm)', flex: 1, align: 'right', headerAlign: 'right'},
   {field: 'age', headerName: 'EDAD', flex: 1, align: 'right', headerAlign: 'right'},
-  {field: 'value', headerName: 'VALOR', flex: 1, align: 'right', headerAlign: 'right'}
+  {
+    field: 'value',
+    headerName: 'VALOR',
+    flex: 1,
+    align: 'right',
+    headerAlign: 'right',
+    type: 'number', // Establecer el tipo de columna como número
+    valueFormatter: (params) => (params.value ? params.value.toLocaleString() : null), // Formatear el valor como cadena
+  }
 ]
 
 

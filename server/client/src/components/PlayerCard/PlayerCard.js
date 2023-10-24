@@ -18,7 +18,10 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
             if (players[playerId].position === position) {
               filtered[playerId] = players[playerId];
             }
-          }
+        }
+
+        filtered.sort((a, b) => (a.value || 0) - (b.value || 0));
+
         return filtered;
     }
 
