@@ -21,6 +21,7 @@ const columns = [
     align: 'right',
     headerAlign: 'right',
     type: 'number', // Establecer el tipo de columna como número
+    sortable: true,
     valueFormatter: (params) => (params.value ? params.value.toLocaleString() : null), // Formatear el valor como cadena
   }
 ]
