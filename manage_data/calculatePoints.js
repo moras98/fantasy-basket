@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+const { DB } = require('../config');
 require('dotenv').config();
 
 
@@ -23,13 +24,16 @@ const pointsCalculation = (stat, position) => {
     return totalPoints;
 }
 
-(async()=> {
-    const game_id = 1;
 
+
+(async()=> {
+    const matchweek_id = 1;
+    const getGamesStmt = (id) => `SELECT id FROM games WHERE matchweek_id = ${id};`;
     const getGameStatsStmt = (id) => `SELECT * FROM games_stats WHERE game_id = ${id};`;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
     const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE id =${id};`;
+    const resetLastPointsStmt = () => `UPDATE users_teams SET last_points = 0;`;
     const lastPointsStmt = (id, points) => `UPDATE users_teams SET last_points = last_points + ${points} WHERE id=${id};`;
 
     try {
@@ -43,18 +47,26 @@ const pointsCalculation = (stat, position) => {
 
         const playersPoints = [];
         await db.connect();
+        //RESETEO A 0
+        await db.query(resetLastPointsStmt());
+        //BUSCO LOS PARTIDOS QUE SE JUGARON EN LA FECHA 
 
-        const gameStatsQuery = await db.query(getGameStatsStmt(game_id));
-        gameStatsRows = gameStatsQuery.rows;
+        const gamesId = await db.query(getGamesStmt(matchweek_id));
+        gamesIds = gamesId.rows;
         
-        //BUSCO TODOS LOS JUGADORES QUE TIENEN ESTADISTICAS
-        for (const stat of gameStatsRows) {
-            //BUSCO LA POSICION DEL JUGADOR
-            const playerPositionQuery = await db.query(getPlayerPositionStmt(stat.player_id));
-            const playerPosition = playerPositionQuery.rows[0].position;
-            playersPoints.push({player_id:stat.player_id, calculatedPoints: pointsCalculation(stat, playerPosition), position: playerPosition});
+        //BUSCO TODAS LAS ESTADISTICAS PARA DE CADA PARTIDO 
+        for (const gameId of gamesIds) {
+            const gameStatsQuery = await db.query(getGameStatsStmt(gameId.id));
+            gameStatsRows = gameStatsQuery.rows;
+            
+            //BUSCO TODOS LOS JUGADORES QUE TIENEN ESTADISTICAS
+            for (const stat of gameStatsRows) {
+                //BUSCO LA POSICION DEL JUGADOR
+                const playerPositionQuery = await db.query(getPlayerPositionStmt(stat.player_id));
+                const playerPosition = playerPositionQuery.rows[0].position;
+                playersPoints.push({player_id:stat.player_id, calculatedPoints: pointsCalculation(stat, playerPosition), position: playerPosition});
+            }
         }
-
         //OPCION 2 BUSCO TODOS LOS EQUIPOS QUE POR POSICION(COLUMNA) CONTENGAN AL JUGADOR EN CUESTION Y SUMO SUS PUNTOS
         for (playerInfo of playersPoints) {
             //COLUMN NAME

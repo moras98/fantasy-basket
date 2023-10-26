@@ -37,20 +37,18 @@ export default function GameStatsTable({ playerId, gameId }){
 
     function timeToSeconds(time) {
         const parts = time.split(":");
-        const hours = parseInt(parts[0], 10);
-        const minutes = parseInt(parts[1], 10);
-        const seconds = parseInt(parts[2], 10);
-        return hours * 3600 + minutes * 60 + seconds;
+        const minutes = parseInt(parts[0], 10);
+        const seconds = parseInt(parts[1], 10);
+        return  minutes * 60 + seconds;
     }
 
     function secondsToTime(seconds) {
-        const hours = Math.floor(seconds / 3600);
         const remainingSeconds = seconds % 3600;
         const minutes = Math.floor(remainingSeconds / 60);
         const finalSeconds = remainingSeconds % 60;
       
         // Formatear en "HH:MM:SS"
-        const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${finalSeconds.toString().padStart(2, "0")}`;
+        const formattedTime = `${minutes.toString().padStart(2, "0")}:${finalSeconds.toString().padStart(2, "0")}`;
         return formattedTime;
     }
 
