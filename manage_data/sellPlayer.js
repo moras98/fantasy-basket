@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 (async()=>{
-    const player_to_sell_id = 0;
+    const player_to_sell_id = 115;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
     const getPlayerValueStmt = (id)=> `SELECT value FROM players WHERE id = ${id};`;
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
@@ -23,7 +23,7 @@ require('dotenv').config();
     await db.connect();
     
     const playerPositionQuery = await db.query(getPlayerPositionStmt(player_to_sell_id));
-    const playerPosition = playerPositionQuery.rows[0].position;
+    const position = playerPositionQuery.rows[0].position;
     
     const playerValueQuery = await db.query(getPlayerValueStmt(player_to_sell_id));
     const playerValue = playerValueQuery.rows[0].value;
@@ -45,7 +45,7 @@ require('dotenv').config();
         column = 'player5_id'
     }
     
-    const usersTeams = await db.query(getUsersTeams(column, playerInfo.player_id));
+    const usersTeams = await db.query(getUsersTeams(column, player_to_sell_id));
     const usersTeamsRows = usersTeams.rows;
     if (usersTeamsRows.length) {
         for (const userTeam of usersTeamsRows){
