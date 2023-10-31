@@ -1,0 +1,30 @@
+.matchWeekSelector {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.matchWeekSelector button {
+    max-height: 50px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: orange;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.matchWeekSelector button:hover {
+    background-color: black;
+    color: orange;
+}
+
+.matchWeekSelector button:disabled {
+    background-color: black;
+    color: lightgray;
+}
