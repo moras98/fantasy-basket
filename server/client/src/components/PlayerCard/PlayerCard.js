@@ -19,18 +19,17 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
               filtered[playerId] = players[playerId];
             }
         }
-
-        const sortedFiltered = {};
+        // const sortedFiltered = {};
+        const sortedFiltered = [];
         Object.keys(filtered)
             .sort((playerIdA, playerIdB) => {
             const valueA = filtered[playerIdA].value || 0;
             const valueB = filtered[playerIdB].value || 0;
-            return valueA - valueB;
+            return valueB - valueA;
             })
             .forEach((playerId) => {
-            sortedFiltered[playerId] = filtered[playerId];
+                sortedFiltered.push(filtered[playerId]);
             });
-
         return sortedFiltered;
     }
 
@@ -121,7 +120,20 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Object.keys(filteredPlayers(players, position)).map(key => {
+                        {/* {Object.keys(filteredPlayers(players, position)).map(key => {
+                            const player = players[key];
+                            return (
+                                <TableRow key={key}  sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}>
+                                    <TableCell>{player?.first_name} {player?.last_name}</TableCell>
+                                    <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
+                                    <TableCell align='right'>{player?.position}</TableCell>
+                                    <TableCell align='right'>{player?.value?.toLocaleString()}</TableCell>
+                                    <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value || buyButtonDisabled} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}} >Comprar</Button></TableCell>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody> */}
+                    {filteredPlayers(players, position).map(key => {
                             const player = players[key];
                             return (
                                 <TableRow key={key}  sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}>
