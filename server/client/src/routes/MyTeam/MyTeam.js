@@ -55,7 +55,7 @@ export default function MyTeam() {
                         p: 4,}}
                         >
                             <h3>¿Cómo funciona MyTeam?</h3>
-                            <p><b>Mercado:</b> El período de transferencias para modificar el equipo se encuentra disponible a partir del otorgamiento de los puntos finalizada la fecha anterior y hasta el día previo de arranque de la nueva fecha, hasta las 23.59 hrs.</p>
+                            <p><b>Mercado:</b> El período de transferencias para modificar el equipo se encuentra disponible a partir del otorgamiento de los puntos finalizada la fecha anterior y hasta una hora antes previo al arranque del primer partido de la fecha.</p>
                             <p><b>Jugadores:</b> Los jugadores solo tienen disponibles una única posición en la que pueden jugar, a pesar de que en la vida real el jugador pueda desempeñar diferentes roles.</p>
                             <p><b>Puntuación:</b> Los puntos por fecha que otorga cada jugador se calcula en función de puntos marcados, triples encestados, asistencias, rebotes defensivos, rebotes ofensivos, robos, tapones y pérdidas. Según la posición del jugador una o más estadísticas obtienen un multiplicador.
                                 BASE: ASISTENCIAS x2, ESCOLTA: PUNTOS x2, ALERO: CANT.TRIPLES X3, ALA-PIVOT: REBOTES DEF x2, PIVOT: REBOTES OF Y REBOTES DEF x2</p>
