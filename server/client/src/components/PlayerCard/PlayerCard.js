@@ -69,7 +69,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
     }
 
     return (
-        <Badge badgeContent={'+' +  player?.last_points_scored + ' FFP'} color="primary">
+        <Badge badgeContent={player? '+' +  player?.last_points_scored + ' FFP': ''} color="primary">
             <Card component={Paper} sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <CardMedia sx={{height:130, display: player?'block':'none'}}><PersonIcon sx={{height: 130, width: 'auto'}}/></CardMedia>
             <CardContent sx={{display: player?'block':'none'}}>
@@ -134,10 +134,11 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                             )
                         })}
                     </TableBody> */}
-                    {filteredPlayers(players, position).map(key => {
-                            const player = players[key];
+                    {filteredPlayers(players, position).map((obj, index) => {
+                            const player = obj;
+                            // console.log(obj);
                             return (
-                                <TableRow key={key}  sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}>
+                                <TableRow key={index}  sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}>
                                     <TableCell>{player?.first_name} {player?.last_name}</TableCell>
                                     <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
                                     <TableCell align='right'>{player?.position}</TableCell>

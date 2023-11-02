@@ -28,7 +28,7 @@ const pointsCalculation = (stat, position) => {
 }
 
 (async()=> {
-    const game_id = 9;
+    const game_id = 11;
 
     const getGameStatsStmt = (id) => `SELECT * FROM games_stats WHERE game_id = ${id};`;
     const getPlayerStmt = (id) => `SELECT * FROM players WHERE id = ${id};`;
