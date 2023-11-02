@@ -12,7 +12,7 @@
     border: 1px solid transparent;
     border-radius: 8px;
     padding: 10px;
-    background-color: orange;
+    background-color: #ff9738;
     cursor: pointer;
     transition: all ease 0.3s;
     font-size: medium;
@@ -21,7 +21,7 @@
 
 .matchWeekSelector button:hover {
     background-color: black;
-    color: orange;
+    color: #ff9738;
 }
 
 .matchWeekSelector button:disabled {
