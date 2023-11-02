@@ -31,6 +31,7 @@ const pointsCalculation = (stat, position) => {
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
     const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE id =${id};`;
     const lastPointsStmt = (id, points) => `UPDATE users_teams SET last_points = last_points + ${points} WHERE id=${id};`;
+    const lastPointsPlayerStmt = (id, points) => `UPDATE players SET last_points_scored = ${points} WHERE id=${id};`;
 
     try {
         const db = new Client({
@@ -52,6 +53,7 @@ const pointsCalculation = (stat, position) => {
             //BUSCO LA POSICION DEL JUGADOR
             const playerPositionQuery = await db.query(getPlayerPositionStmt(stat.player_id));
             const playerPosition = playerPositionQuery.rows[0].position;
+            await db.query(lastPointsPlayerStmt(stat.player_id, pointsCalculation(stat, playerPosition)));
             playersPoints.push({player_id:stat.player_id, calculatedPoints: pointsCalculation(stat, playerPosition), position: playerPosition});
         }
 

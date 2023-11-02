@@ -52,6 +52,29 @@ export default function GameStatsTable({ playerId, gameId }){
         return formattedTime;
     }
 
+    function calculatePoints(stats){
+        const player = players[stats?.player_id];
+        const position = player?.position;
+
+        let totalPoints = 0;
+        if (position === 'BASE'){
+            totalPoints = (stats.points_scored + stats.assists * 2 + stats.def_rebounds + stats.off_rebounds + stats.threes_scored + stats.steals + stats.blocks - stats.losts);
+        }
+        if (position === 'ESCOLTA'){
+            totalPoints = (stats.points_scored * 2 + stats.assists + stats.def_rebounds + stats.off_rebounds + stats.threes_scored + stats.steals + stats.blocks - stats.losts);
+        }
+        if (position === 'ALERO'){
+            totalPoints = (stats.points_scored + stats.assists + stats.def_rebounds + stats.off_rebounds + 3 * stats.threes_scored + stats.steals + stats.blocks - stats.losts);
+        }
+        if (position === 'ALA-PIVOT'){
+            totalPoints = (stats.points_scored  + stats.assists + stats.def_rebounds * 2 + stats.off_rebounds + stats.threes_scored + stats.steals + stats.blocks - stats.losts);
+        }
+        if (position === 'PIVOT'){
+            totalPoints = (stats.points_scored  + stats.assists + stats.def_rebounds * 2 + stats.off_rebounds * 2 + stats.threes_scored + stats.steals + stats.blocks - stats.losts);
+        }
+        return totalPoints;
+    }
+
     const calculateAverages = () => {
         if (!game_stats) return {};
         
@@ -65,6 +88,7 @@ export default function GameStatsTable({ playerId, gameId }){
             losts: 0,
             steals: 0,
             blocks: 0,
+            ffp: 0,
         };
 
         const statsCount = Object.keys(game_stats).length;
@@ -82,6 +106,7 @@ export default function GameStatsTable({ playerId, gameId }){
             averages.losts += stats.losts;
             averages.steals += stats.steals;
             averages.blocks += stats.blocks;
+            averages.ffp += calculatePoints(stats);
         });
 
         // Calcular promedios dividiendo por el número de estadísticas
@@ -100,17 +125,18 @@ export default function GameStatsTable({ playerId, gameId }){
             <Table aria-label='stats table'>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{display: gameId?'none': 'flex'}}>PARTIDO</TableCell>
-                        <TableCell align='right' sx={{display: playerId?'none': 'flex'}}>JUGADOR</TableCell>
-                        <TableCell align='right'>MINS</TableCell>
-                        <TableCell align='right'>PTS</TableCell>
-                        <TableCell align='right'>3PTS</TableCell>
-                        <TableCell align='right'>REO</TableCell>
-                        <TableCell align='right'>RED</TableCell>
-                        <TableCell align='right'>ASI</TableCell>
-                        <TableCell align='right'>PER</TableCell>
-                        <TableCell align='right'>ROB</TableCell>
-                        <TableCell align='right'>BLQ</TableCell>
+                        <TableCell sx={{display: gameId?'none': 'flex', fontWeight:'bold'}}>PARTIDO</TableCell>
+                        <TableCell align='right' sx={{display: playerId?'none': 'flex', fontWeight:'bold'}}>JUGADOR</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>MINS</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>PTS</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>3PTS</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>REO</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>RED</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>ASI</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>PER</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>ROB</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>BLQ</TableCell>
+                        <TableCell align='right' sx={{fontWeight: 'bold'}}>FFP</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -132,6 +158,7 @@ export default function GameStatsTable({ playerId, gameId }){
                                 <TableCell align='right'>{stats.losts}</TableCell>
                                 <TableCell align='right'>{stats.steals}</TableCell>
                                 <TableCell align='right'>{stats.blocks}</TableCell>
+                                <TableCell align='right'>{calculatePoints(stats)}</TableCell>
                             </TableRow>
                         )
                     })}
@@ -146,6 +173,7 @@ export default function GameStatsTable({ playerId, gameId }){
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.losts.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.steals.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.blocks.toFixed(2)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight:'bold'}}>{averages.ffp.toFixed(2)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

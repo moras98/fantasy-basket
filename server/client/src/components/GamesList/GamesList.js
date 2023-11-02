@@ -11,7 +11,6 @@ import { loadGames } from '../../store/game/Game.actions';
 import { loadTeams } from '../../store/team/Team.actions';
 import { useNavigate } from 'react-router-dom';
 import './GamesList.css';
-import Button from '../Button/Button';
 
 
 export default function GamesList(){
@@ -52,7 +51,7 @@ export default function GamesList(){
                     <TableHead>
                         <TableRow>
                             {/* <TableCell>Jornada</TableCell> */}
-                            <TableCell align='left'>Fecha</TableCell>
+                            <TableCell align='center'>Fecha</TableCell>
                             <TableCell align='right'>Resultado</TableCell>
                         </TableRow>
                     </TableHead>
@@ -79,7 +78,7 @@ export default function GamesList(){
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}
                         onClick={() => navigate(`/games/${game.id}`)}
                         >
-                        <TableCell align='left'>{game.date.split('T')[0]}</TableCell>
+                        <TableCell align='center'>{game.date.split('T')[0]}</TableCell>
                         <TableCell align='right'>{teams[game.team1_id]?.name} {game.team1_score} - {game.team2_score} {teams[game.team2_id]?.name}</TableCell>
                         </TableRow>
                     ))}

@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, CardMedia, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Paper, Popover, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Badge } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import React from "react";
@@ -69,7 +69,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
     }
 
     return (
-        <div>
+        <Badge badgeContent={'+' +  player?.last_points_scored + ' FFP'} color="primary">
             <Card component={Paper} sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <CardMedia sx={{height:130, display: player?'block':'none'}}><PersonIcon sx={{height: 130, width: 'auto'}}/></CardMedia>
             <CardContent sx={{display: player?'block':'none'}}>
@@ -116,6 +116,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                             <TableCell align='right'>Equipo</TableCell>
                             <TableCell align='right'>Posición</TableCell>
                             <TableCell align='right'>Valor</TableCell>
+                            <TableCell align="right">Últimos FFP</TableCell>
                             <TableCell align='right'></TableCell>
                         </TableRow>
                     </TableHead>
@@ -141,6 +142,7 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                                     <TableCell align='right'>{teams[player?.team_id]?.name}</TableCell>
                                     <TableCell align='right'>{player?.position}</TableCell>
                                     <TableCell align='right'>{player?.value?.toLocaleString()}</TableCell>
+                                    <TableCell align="right">{player?.last_points_scored}</TableCell>
                                     <TableCell align='right'><Button disabled={!modifiableStatus || myTeam?.money < player?.value || buyButtonDisabled} onClick={()=>{handleClickBuy(player); setShowPlayerList(false)}} sx={{color: '#ff9738', fontWeight: 'bold'}} >Comprar</Button></TableCell>
                                 </TableRow>
                             )
@@ -149,6 +151,6 @@ export default function PlayerCard({player, modifiableStatus, teams, position, p
                 </Table>
             </TableContainer>
         </Popover>
-        </div>
+        </Badge>
     );
 }
