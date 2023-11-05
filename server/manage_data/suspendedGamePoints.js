@@ -1,6 +1,5 @@
-const { Client } = require("pg");
+const {Client} = require('pg');
 require('dotenv').config();
-
 
 const pointsCalculation = (stat, position) => {
     let totalPoints = 0;
@@ -23,15 +22,20 @@ const pointsCalculation = (stat, position) => {
     return totalPoints;
 }
 
-(async()=> {
-    const game_id = 16;
+(async()=>{
+    const game_id = 0;
+    const matchweek_id = 0;
 
     const getGameStatsStmt = (id) => `SELECT * FROM games_stats WHERE game_id = ${id};`;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
-    const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
-    const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE id =${id};`;
-    const lastPointsStmt = (id, points) => `UPDATE users_teams SET last_points = last_points + ${points} WHERE id=${id};`;
-    const lastPointsPlayerStmt = (id, points) => `UPDATE players SET last_points_scored = ${points} WHERE id=${id};`;
+    const getUsersTeams = (id) => `SELECT * FROM users_teams WHERE user_id = ${id};`;
+    const getUsersMWTeams =  (matchweek, column, id) => `SELECT * FROM users_teams_mw WHERE matchweek_id = ${matchweek} AND ${column} = ${id}`;
+    const sumPointsStmt = (id, points) => `UPDATE users_teams SET points = points + ${points} WHERE user_id =${id};`;
+
+    //BUSCO TODAS LAS ESTADISTICAS PARA UN PARTIDO SUSPENDIDO DE UNA JORNADA
+    //BUSCO TODOS LOS EQUIPOS DE LOS USUARIOS DONDE SU MATCHWEEK SEA LA SUSPENDIDA
+    //CALCULO LOS PUNTOS DE ESE PARTIDO
+    //AGREGO LOS PUNTOS AL EQUIPO PRINCIPAL
 
     try {
         const db = new Client({
@@ -46,20 +50,16 @@ const pointsCalculation = (stat, position) => {
         await db.connect();
 
         const gameStatsQuery = await db.query(getGameStatsStmt(game_id));
-        gameStatsRows = gameStatsQuery.rows;
-        
-        //BUSCO TODOS LOS JUGADORES QUE TIENEN ESTADISTICAS
-        for (const stat of gameStatsRows) {
+        const gameStatsRows = gameStatsQuery.rows;
+
+        for (const stat of gameStatsRows){
             //BUSCO LA POSICION DEL JUGADOR
             const playerPositionQuery = await db.query(getPlayerPositionStmt(stat.player_id));
             const playerPosition = playerPositionQuery.rows[0].position;
-            await db.query(lastPointsPlayerStmt(stat.player_id, pointsCalculation(stat, playerPosition)));
             playersPoints.push({player_id:stat.player_id, calculatedPoints: pointsCalculation(stat, playerPosition), position: playerPosition});
         }
 
-        //OPCION 2 BUSCO TODOS LOS EQUIPOS QUE POR POSICION(COLUMNA) CONTENGAN AL JUGADOR EN CUESTION Y SUMO SUS PUNTOS
         for (playerInfo of playersPoints) {
-            //COLUMN NAME
             const position = playerInfo.position;
             let column = '';
             if (position === 'BASE'){
@@ -78,23 +78,15 @@ const pointsCalculation = (stat, position) => {
                 column = 'player5_id'
             }
 
+            const usersTeamsMW = await db.query(getUsersMWTeams(matchweek_id, playerInfo.player_id));
+            const usersTeamsMWRows = usersTeamsMW.rows;
 
-            const usersTeams = await db.query(getUsersTeams(column, playerInfo.player_id));
-            const usersTeamsRows = usersTeams.rows;
-            
-            if (usersTeamsRows.length) {
-               for (const userTeam of usersTeamsRows){
-                    await db.query(sumPointsStmt(userTeam.id, playerInfo.calculatedPoints));
-                    await db.query(lastPointsStmt(userTeam.id, playerInfo.calculatedPoints));
-               }
+            if (usersTeamsMWRows.length) {
+                for (const userTeam of usersTeamsMWRows){
+                    await db.query(sumPointsStmt(userTeam.user_id, playerInfo.calculatedPoints));
+                }
             }
-            
         }
-
-
-        await db.end();
-
-    } catch(err) {
-        console.log("ERROR CALCULATING POINTS: ", err);
     }
+
 })();

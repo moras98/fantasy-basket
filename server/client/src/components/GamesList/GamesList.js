@@ -42,7 +42,7 @@ export default function GamesList(){
                 Anterior Jornada
                 </button>
                 <h2>Jornada {currentMatchweek}</h2>
-                <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === 3}>
+                <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === 4}>
                 Siguiente Jornada
                 </button>
             </div>

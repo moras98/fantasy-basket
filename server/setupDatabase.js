@@ -91,6 +91,27 @@ const { DB } = require('./config');
         end_date      TIMESTAMP
     );`;
 
+    const usersTeamsMWStmt = `
+        CREATE TABLE IF NOT EXISTS users_teams_mw (
+            id              INT     PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
+            matchweek_id    INT,
+            user_id         INT,
+            player1_id      INT,
+            player2_id      INT,
+            player3_id      INT,
+            player4_id      INT,
+            player5_id      INT,
+            FOREIGN KEY (matchweek_id) REFERENCES matchweek(id) ON DELETE CASCADE,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY (player1_id) REFERENCES players(id),
+            FOREIGN KEY (player2_id) REFERENCES players(id),
+            FOREIGN KEY (player3_id) REFERENCES players(id),
+            FOREIGN KEY (player4_id) REFERENCES players(id),
+            FOREIGN KEY (player5_id) REFERENCES players(id)
+
+        );
+    `;
+
     try {
         const db = new Client({
             user: DB.PGUSER,
@@ -110,6 +131,7 @@ const { DB } = require('./config');
         await db.query(gamesTableStmt);
         await db.query(games_statsTableStmt);
         await db.query(users_teamsTableStmt);
+        await db.query(usersTeamsMWStmt);
     
         await db.end();
     } catch(err) {
