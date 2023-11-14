@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 (async()=>{
-    const player_to_sell_id = 61;
+    const player_to_sell_id = 126;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
     const getPlayerValueStmt = (id)=> `SELECT value FROM players WHERE id = ${id};`;
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
