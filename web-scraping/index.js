@@ -4,8 +4,8 @@ const fs = require('fs');
 
 
 //Variables
-const game_id = 30;
-const game_url = 'https://fibalivestats.dcd.shared.geniussports.com/u/FUBB/2369875/bs.html';
+const game_id = 36;
+const game_url = 'https://fibalivestats.dcd.shared.geniussports.com/u/FUBB/2369882/bs.html';
 
 const teamsData = (async () => {
   const browser = await puppeteer.launch({ headless: true, waitForInitialPage: true });
