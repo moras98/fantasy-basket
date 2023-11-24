@@ -11,17 +11,20 @@ import { loadPlayerStatsById, loadGameStatsById, loadPlayerStatsByIdAndGame } fr
 import { resetStats } from '../../store/game_stats/GameStats.reducers';
 import { loadPlayers } from '../../store/player/Player.actions';
 import { loadTeams } from '../../store/team/Team.actions';
+import { loadGames } from '../../store/game/Game.actions';
 
 export default function GameStatsTable({ playerId, gameId }){
     const dispatch = useDispatch();
     const game_stats = useSelector( state => state.game_stats);
     const players = useSelector(state => state.players);
     const teams = useSelector (state => state.teams);
+    const games = useSelector(state=>state.games);
 
     React.useEffect(()=>{
         async function load(){
             dispatch(resetStats());
             dispatch(loadTeams());
+            dispatch(loadGames());
             if(playerId && gameId){
                 await dispatch( loadPlayerStatsByIdAndGame(playerId, gameId));
             } else if (gameId) {
@@ -125,7 +128,7 @@ export default function GameStatsTable({ playerId, gameId }){
             <Table aria-label='stats table'>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{display: gameId?'none': 'flex', fontWeight:'bold'}}>PARTIDO</TableCell>
+                        <TableCell sx={{display: gameId?'none': 'flex', fontWeight:'bold'}}>FECHA</TableCell>
                         <TableCell align='right' sx={{display: playerId?'none': 'flex', fontWeight:'bold'}}>JUGADOR</TableCell>
                         <TableCell align='right' sx={{fontWeight: 'bold'}}>MINS</TableCell>
                         <TableCell align='right' sx={{fontWeight: 'bold'}}>PTS</TableCell>
@@ -147,7 +150,7 @@ export default function GameStatsTable({ playerId, gameId }){
                             key={stats.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#f2f2f2' } }}
                             >
-                                <TableCell component="th" scope='row' sx={{display: gameId?'none': 'flex'}}>{stats.game_id}</TableCell>
+                                <TableCell component="th" scope='row' sx={{display: gameId?'none': 'flex'}}>{games[stats.game_id].matchweek_id}</TableCell>
                                 <TableCell align='right' sx={{display: playerId?'none': 'flex'}}>{players[stats.player_id]?.first_name} {players[stats.player_id]?.last_name} ({teams[players[stats.player_id]?.team_id]?.name})</TableCell>
                                 <TableCell align='right'>{stats.time_played}</TableCell>
                                 <TableCell align='right'>{stats.points_scored}</TableCell>
@@ -164,7 +167,7 @@ export default function GameStatsTable({ playerId, gameId }){
                     })}
                     <TableRow sx={{display: gameId?'none': 'table-row'}}>
                             <TableCell component="th" scope='row' sx={{fontWeight: 'bold'}}>Promedios:</TableCell>
-                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{secondsToTime(averages.time_played)}</TableCell>
+                            <TableCell align='right' sx={{fontWeight: 'bold'}}>{secondsToTime(averages.time_played.toFixed(0))}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.points_scored.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.threes_scored.toFixed(2)}</TableCell>
                             <TableCell align='right' sx={{fontWeight: 'bold'}}>{averages.off_rebounds.toFixed(2)}</TableCell>
