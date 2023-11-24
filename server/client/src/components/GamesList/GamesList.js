@@ -19,7 +19,9 @@ export default function GamesList(){
     const teams = useSelector(state => state.teams);
     const navigate = useNavigate();
 
-    const [currentMatchweek, setCurrentMatchweek] = React.useState(1);
+    const matchweek_number = 8;
+
+    const [currentMatchweek, setCurrentMatchweek] = React.useState(matchweek_number);
 
     React.useEffect(()=>{
         async function load(){
@@ -32,8 +34,6 @@ export default function GamesList(){
     const gamesArray = Object.keys(games).map(key => games[key]);
     const filteredGames = gamesArray.filter(game => game.matchweek_id == currentMatchweek);
 
-    console.log(filteredGames);
-
 
     return(
         <div>
@@ -42,7 +42,7 @@ export default function GamesList(){
                 Anterior Jornada
                 </button>
                 <h2>Jornada {currentMatchweek}</h2>
-                <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === 8}>
+                <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === matchweek_number}>
                 Siguiente Jornada
                 </button>
             </div>
