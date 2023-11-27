@@ -14,14 +14,8 @@ function PlayerInfo() {
     const player = useSelector(state => state.players[playerId]);
     const teams = useSelector(state => state.teams);
     useEffect(() => {
-        async function load(){
-            if (playerId) {
-                await dispatch(loadPlayers());
-                await dispatch(loadPlayerById(playerId));
-                await dispatch( loadTeams());
-            }
-        }
-        load();
+            // dispatch(loadPlayerById(playerId));
+            dispatch( loadTeams());
     }, [dispatch, playerId]);
     
     if (!player) {

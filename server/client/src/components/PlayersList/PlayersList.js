@@ -33,10 +33,7 @@ export default function PlayersList({ players }) {
 
 
   useEffect(()=>{
-      async function load() {
-          await dispatch( loadTeams());
-      }
-      load();
+      dispatch( loadTeams());
   }, [dispatch]);
 
   const data = players

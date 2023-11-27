@@ -8,10 +8,7 @@ function Players(){
     const players = useSelector(state => state.players);
 
     useEffect(()=>{
-        async function load() {
-            await dispatch(loadPlayers());
-        }
-        load();
+        dispatch(loadPlayers());
     }, [dispatch]);
 
     if(!players) {
