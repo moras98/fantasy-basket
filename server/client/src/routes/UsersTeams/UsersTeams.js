@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { loadUsernames } from "../../store/users/Users.actions";
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function UsersTeams(){
     const dispatch = useDispatch();
@@ -70,7 +71,7 @@ export default function UsersTeams(){
                             <TableRow key={team.user_id}>
                                 <TableCell>{index + 1}</TableCell>
                                 <TableCell align="right">{users[team?.user_id]?.username}</TableCell>
-                                <TableCell align="right">{team?.points.toLocaleString()}(+{team?.last_points.toLocaleString()})</TableCell>
+                                <TableCell align="right">{team?.points.toLocaleString()} ( +{team?.last_points.toLocaleString()}     |   <b>x{team?.players_played}</b><PersonIcon sx={{verticalAlign: 'middle'}}/> )</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
