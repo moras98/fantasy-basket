@@ -19,7 +19,7 @@ export default function GamesList(){
     const teams = useSelector(state => state.teams);
     const navigate = useNavigate();
 
-    const matchweek_number = 10;
+    const matchweek_number = 11;
 
     const [currentMatchweek, setCurrentMatchweek] = React.useState(matchweek_number);
 
