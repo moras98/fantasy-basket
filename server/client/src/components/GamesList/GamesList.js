@@ -11,38 +11,57 @@ import { loadGames } from '../../store/game/Game.actions';
 import { loadTeams } from '../../store/team/Team.actions';
 import { useNavigate } from 'react-router-dom';
 import './GamesList.css';
+import { loadMatchWeeks } from '../../store/matchweek/MatchWeek.actions';
 
 
 export default function GamesList(){
     const dispatch = useDispatch();
     const games = useSelector(state => state.games);
     const teams = useSelector(state => state.teams);
+    const matchweeks = useSelector(state => state.matchweeks);
     const navigate = useNavigate();
-
-    const matchweek_number = 15;
-
-    const [currentMatchweek, setCurrentMatchweek] = React.useState(matchweek_number);
 
     React.useEffect(()=>{
         async function load(){
             await dispatch(loadGames());
             await dispatch(loadTeams());
+            await dispatch(loadMatchWeeks());
         }
         load();
     }, [dispatch]);
 
+    const matchweekKeys = Object.keys(matchweeks);
+    const lastMatchweek = matchweeks[matchweekKeys[matchweekKeys.length - 1]];
+
+    const initialMatchweek = lastMatchweek ? lastMatchweek.id : 1;
+    const [currentMatchweek, setCurrentMatchweek] = React.useState(initialMatchweek);
+    const [matchweekIndex, setMatchweekIndex] = React.useState(matchweekKeys.length - 1)
+
+
     const gamesArray = Object.keys(games).map(key => games[key]);
     const filteredGames = gamesArray.filter(game => game.matchweek_id == currentMatchweek);
+
+    const handlePrevClick = () => {
+        const newIndex = Math.max(0, matchweekIndex - 1);
+        setCurrentMatchweek(matchweekKeys[newIndex]);
+        setMatchweekIndex(newIndex);
+    };
+
+    const handleNextClick = () => {
+        const newIndex = Math.min(matchweekKeys.length - 1, matchweekIndex + 1);
+        setCurrentMatchweek(matchweekKeys[newIndex]);
+        setMatchweekIndex(newIndex);
+    };
 
 
     return(
         <div>
             <div className='matchWeekSelector'>
-                <button onClick={() => setCurrentMatchweek(currentMatchweek - 1)} disabled={currentMatchweek === 1}>
+                <button onClick={handlePrevClick} disabled={matchweekIndex === 0}>
                 Anterior Jornada
                 </button>
-                <h2>Jornada {currentMatchweek-1}</h2>
-                <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === matchweek_number}>
+                <h2>Jornada {matchweeks[currentMatchweek]?.n_matchweek}</h2>
+                <button onClick={handleNextClick} disabled={matchweekIndex === matchweekKeys.length}>
                 Siguiente Jornada
                 </button>
             </div>

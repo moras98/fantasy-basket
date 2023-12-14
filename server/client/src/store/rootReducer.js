@@ -8,6 +8,7 @@ import gameStatsReducers from './game_stats/GameStats.reducers';
 import GameReducers from './game/Game.reducers';
 import UserTeamReducers from './users_teams/UsersTeams.reducers';
 import UsersReducers from './users/Users.reducers';
+import MatchweekReducers from './matchweek/MatchWeek.reducers';
 
 export default combineReducers({
   auth: authReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
   game_stats: gameStatsReducers,
   games: GameReducers,
   usersTeams: UserTeamReducers,
-  users: UsersReducers
+  users: UsersReducers,
+  matchweeks: MatchweekReducers,
 });
