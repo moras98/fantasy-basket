@@ -19,7 +19,7 @@ export default function GamesList(){
     const teams = useSelector(state => state.teams);
     const navigate = useNavigate();
 
-    const matchweek_number = 13;
+    const matchweek_number = 15;
 
     const [currentMatchweek, setCurrentMatchweek] = React.useState(matchweek_number);
 
@@ -41,7 +41,7 @@ export default function GamesList(){
                 <button onClick={() => setCurrentMatchweek(currentMatchweek - 1)} disabled={currentMatchweek === 1}>
                 Anterior Jornada
                 </button>
-                <h2>Jornada {currentMatchweek}</h2>
+                <h2>Jornada {currentMatchweek-1}</h2>
                 <button onClick={() => setCurrentMatchweek(currentMatchweek + 1)} disabled={currentMatchweek === matchweek_number}>
                 Siguiente Jornada
                 </button>
