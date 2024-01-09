@@ -3,12 +3,12 @@ require('dotenv').config();
 
 
 (async()=>{
-    const player_to_sell_id = 80;
+    const player_to_sell_id = 168;
     const getPlayerPositionStmt = (id) => `SELECT position FROM players WHERE id = ${id};`;
     const getPlayerValueStmt = (id)=> `SELECT value FROM players WHERE id = ${id};`;
     const getUsersTeams = (column, id) => `SELECT * FROM users_teams WHERE ${column} = ${id};`;
     const removePlayer = (column, id) => `UPDATE users_teams SET ${column} = NULL WHERE id = ${id};`;
-    const addMoney = (id, value) => `UPDATE users_teams SET money = monney + ${value} WHERE id=${id};`;
+    const addMoney = (id, value) => `UPDATE users_teams SET money = money + ${value} WHERE id=${id};`;
     const deletePlayer = (id) => `DELETE FROM players WHERE id = ${id}`;
     
     try {
